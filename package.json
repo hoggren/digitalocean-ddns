@@ -1,0 +1,27 @@
+{
+  "name": "digitalocean-ddns",
+  "description": "A minimal dynamic DNS record tool for Digitalocean. Neat to run as a cronjob :)",
+  "version": "0.0.2",
+  "license": "MIT",
+  "author": "Patrik Hoggren <p@hoggren.nu>",
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/phoggren/digitalocean-ddns.git"
+  },
+  "main": "lib/updater.js",
+  "preferGlobal": true,
+  "bin:": {
+    "digitalocean-ddns": "./bin/updater.global.js",
+    "digitalocean-dnsrecords": ".bin/records.global.js"
+  },
+  "keywords": ["ddns", "digitalocean", "digitalocean ddns", "dynamic dns"],
+  "scripts": {
+    "records": "node scripts/records.js"
+  },
+  "dependencies": {
+    "request": "^2.88.0",
+    "request-promise-native": "^1.0.5",
+    "dotenv": "^6.2.0"
+  }
+}
