@@ -9,16 +9,13 @@
     "type": "git",
     "url": "https://github.com/phoggren/digitalocean-ddns.git"
   },
-  "main": "lib/updater.js",
+  "main": "./lib/updater.js",
   "preferGlobal": true,
   "bin:": {
-    "digitalocean-ddns": "./bin/updater.global.js",
-    "digitalocean-dnsrecords": ".bin/records.global.js"
+    "do-ddns": "./bin/updater.global.js",
+    "do-dnsrecords": ".bin/records.global.js"
   },
   "keywords": ["ddns", "digitalocean", "digitalocean ddns", "dynamic dns"],
-  "scripts": {
-    "records": "node scripts/records.js"
-  },
   "dependencies": {
     "request": "^2.88.0",
     "request-promise-native": "^1.0.5",

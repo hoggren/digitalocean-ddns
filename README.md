@@ -8,9 +8,9 @@ A minimal dynamic DNS record tool for [DigitalOcean](https://www.digitalocean.co
     Install it **globally** as it is a tool rather than a Javascript library.
 
 2. Create a file named `.digitalocean.env` in a suitable directory.
-    On a Linux or MacOS system i would create the file in your **home directory**. Fill it with a **API token** from DigitalOcean and the **domain** you want to control as the example file below. The ID field isn't needed in following step. 
+    This must be the startup directory for the tool. On a Linux or MacOS system i would create the file in your **home directory**. Fill it with a **API token** from DigitalOcean and the **domain** you want to control as the example file below. The ID field isn't needed in following step.
 
-3. Run `npm run records` to get ids of your domain records, see the example response.
+3. Run `digitalocean-dnsrecords` to get ids of your domain records, see the example response.
     **Copy the id** of the record you want to command, usually the A record, and paste it into the `.digitalocean.env` file as in the example.
 
 The configuration is done!
