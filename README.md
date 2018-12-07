@@ -10,10 +10,12 @@ A minimal dynamic DNS record tool for [DigitalOcean](https://www.digitalocean.co
 2. Create a file named `.digitalocean.env` in a suitable directory.
     This must be the startup directory for the tool. On a Linux or MacOS system i would create the file in your **home directory**. Fill it with a **API token** from DigitalOcean and the **domain** you want to control as the example file below. The ID field isn't needed in following step.
 
-3. Run `digitalocean-dnsrecords` to get ids of your domain records, see the example response.
+3. Run `digitalocean-ddns --dns-records` to get ids of your domain records, see the example response.
     **Copy the id** of the record you want to command, usually the A record, and paste it into the `.digitalocean.env` file as in the example.
 
 The configuration is done!
+
+Run with `digitalocean-ddns --update`
 
 Now it's up to you how you want to schedule it, under Linux or MacOS I strongly recommend you using [crontab](https://crontab.guru/). It's already installed and fairly easy to use, the link includes a generator for the *cron expresson* needed. I included a complete out-of-the-box working example to get started under examples below.
 
@@ -46,12 +48,12 @@ ID=123456
 
 ```bash
 # Run digitalocean-ddns from my home directory 04:00 every night
-0 4 * * * cd /home/myuser && digitalocean-ddns
+0 4 * * * cd /home/myuser && digitalocean-ddns --update
 ```
 
 ## Version history
 
-**0.0.3** - First release that works correct.  
+**0.0.4** - First release that works correct.  
 Only requests Digitalocean if your IP has changed (except for first run which caches the result).
 Environment file for dynamic usage.
 Helper script to get the domain id you need.
