@@ -9,11 +9,10 @@
     "type": "git",
     "url": "https://github.com/phoggren/digitalocean-ddns.git"
   },
-  "main": "./lib/updater.js",
+  "main": "./index.js",
   "preferGlobal": true,
   "bin:": {
-    "do-ddns": "./bin/updater.global.js",
-    "do-dnsrecords": "./bin/records.global.js"
+    "digitalocean-ddns": "./index.js"
   },
   "keywords": [
     "ddns",
