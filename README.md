@@ -31,7 +31,7 @@ ID=123456
 
 #### Example response
 
-```json
+```
 [ { id: 12345678, type: 'NS', name: '@' },
   { id: 22345678, type: 'NS', name: '@' },
   { id: 32345678, type: 'NS', name: '@' },
@@ -53,7 +53,11 @@ ID=123456
 
 ## Version history
 
-**0.0.4** - First release that works correct.  
+**0.5.0** - Refined readme.
+Includes instructions.  
+Version history was incorrect.
+
+**0.4.1** - First release that works correct.  
 Only requests Digitalocean if your IP has changed (except for first run which caches the result).
 Environment file for dynamic usage.
 Helper script to get the domain id you need.
