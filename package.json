@@ -13,7 +13,7 @@
   "preferGlobal": true,
   "bin:": {
     "do-ddns": "./bin/updater.global.js",
-    "do-dnsrecords": ".bin/records.global.js"
+    "do-dnsrecords": "./bin/records.global.js"
   },
   "keywords": [
     "ddns",
