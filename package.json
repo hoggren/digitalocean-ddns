@@ -9,7 +9,7 @@
     "type": "git",
     "url": "https://github.com/phoggren/digitalocean-ddns.git"
   },
-  "main": "./index.js",
+  "main": "index.js",
   "preferGlobal": true,
   "bin:": {
     "digitalocean-ddns": "./index.js"
