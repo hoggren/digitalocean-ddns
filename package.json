@@ -1,7 +1,7 @@
 {
   "name": "digitalocean-ddns",
   "description": "A minimal dynamic DNS record tool for Digitalocean. Neat to run as a cronjob :)",
-  "version": "0.3.0-0",
+  "version": "0.3.0",
   "license": "MIT",
   "author": "Patrik Hoggren <p@hoggren.nu>",
   "private": false,
