@@ -12,7 +12,7 @@
   "preferGlobal": true,
   "main": "lib/digitalocean-ddns.js",
   "bin:": {
-    "digitalocean-ddns": "./bin/cli.js"
+    "digitalocean-ddns": "./bin/digitalocean-ddns"
   },
   "directories": {
     "bin": "./bin",
