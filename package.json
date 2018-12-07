@@ -10,9 +10,14 @@
     "url": "https://github.com/phoggren/digitalocean-ddns.git"
   },
   "preferGlobal": true,
+  "main": "bin/digitalocean-ddns.js",
   "bin:": {
-    "digitalocean-ddns": "./digitalocean-ddns.js"
+    "digitalocean-ddns": "./bin/digitalocean-ddns.js"
   },
+  "files": [
+    "bin",
+    "lib"
+  ],
   "keywords": [
     "ddns",
     "digitalocean",
