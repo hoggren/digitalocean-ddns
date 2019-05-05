@@ -1,14 +1,19 @@
 # digitalocean-ddns
 
-A minimal dynamic DNS record tool for [DigitalOcean](https://www.digitalocean.com) - run on a schedule on your machine with dynamic IP to keep your DNS record updated with your IP. **No unnecessary API calls. No hastle.**
+A dynamic DNS record updater tool for [DigitalOcean](https://www.digitalocean.com). Run it on a schedule on a machine which has a dynamic IP to keep your DNS record updated with your any changes.
+
+**No unnecessary API calls. No hastle.**
 
 ## Install and get up running
 
-1. Run `npm install digitalocean-dns --global`.
+1. Run `npm install digitalocean-ddns --global`.
     Install it **globally** as it is a tool rather than a Javascript library.
 
-2. Create a file named `.digitalocean.env` in a suitable directory.
-    This must be the startup directory for the tool. On a Linux or MacOS system i would create the file in your **home directory**. Fill it with a **API token** from DigitalOcean and the **domain** you want to control as the example file below. The ID field isn't needed in following step.
+2. Create a file named `.digitalocean.env` in your home directory, use the template below - but with your own values.
+
+    **MacOS**: `/Users/<username>/.digitalocean.env`  
+    **Linux**: `/home/<username/.digitalocean.env`  
+    **Windows**: `<DRIVE>:/Users/<username>/.digitalocean.env`  
 
 3. Run `digitalocean-ddns --dns-records` to get ids of your domain records, see the example response.
     **Copy the id** of the record you want to command, usually the A record, and paste it into the `.digitalocean.env` file as in the example.
@@ -19,7 +24,7 @@ Run with `digitalocean-ddns --update`
 
 Now it's up to you how you want to schedule it, under Linux or MacOS I strongly recommend you using [crontab](https://crontab.guru/). It's already installed and fairly easy to use, the link includes a generator for the *cron expresson* needed. I included a complete out-of-the-box working example to get started under examples below.
 
-### Examples
+### Templates and examples
 
 #### .digitalocean.env
 
@@ -44,7 +49,7 @@ ID=123456
 
 ```
 
-#### Crontab example
+#### Crontab example (Unix-based systems)
 
 ```bash
 # Run digitalocean-ddns from my home directory 04:00 every night
@@ -53,16 +58,23 @@ ID=123456
 
 ## Version history
 
-**0.5.0** - Refined readme.
+**0.5.1** - Edited readme and better argument checking  
+Better examples for env-file and check for correct arguments, not just any argument.
+
+---
+
+**0.5.0** - Refined readme.  
 Includes instructions.  
 Version history was incorrect.
+
+---
 
 **0.4.1** - First release that works correct.  
 Only requests Digitalocean if your IP has changed (except for first run which caches the result).
 Environment file for dynamic usage.
 Helper script to get the domain id you need.
 
-I Would not advise anyone to go below this version.
+*I Would not advise anyone to go below this version.*
 
 ## About
 

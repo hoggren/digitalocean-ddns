@@ -1,8 +1,10 @@
 #!/usr/bin/env node
 const [, , ...args] = process.argv;
 
-if (args == null || args.length === 0) {
-    console.log(`No argument specified, quitting.
+const allowedArgs = ['--dns-records', '--update'];
+
+if (args == null || !args.some(arg => allowedArgs.includes(arg))) {
+    console.log(`Incorrect argument specified, quitting.
 
 * --dns-records : get dns-records
 * --update      : update choosen record
