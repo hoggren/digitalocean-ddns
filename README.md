@@ -1,40 +1,36 @@
 # digitalocean-ddns
 
-A dynamic DNS record updater tool for [DigitalOcean](https://www.digitalocean.com). Run it on a schedule on a machine which has a dynamic IP to keep your DNS record updated with your any changes.
+## Dynamic DNS for DigitalOcean!
 
-**No unnecessary API calls. No hastle.**
+A dynamic DNS record updater tool for [DigitalOcean](https://www.digitalocean.com). Schedule this to run on a machine with dynamic IP to keep your DNS record with your ip address. Caches the API response so no extraneous requests are done.
 
-## Install and get up running
+### Install and get started
 
-1. Run `npm install digitalocean-ddns --global`.
-    Install it **globally** as it is a tool rather than a Javascript library.
+1. Run `npm install digitalocean-ddns --global`, I would advise you to install it **globally** as it's a tool/utility.
 
-2. Create a file named `.digitalocean.env` in your home directory, use the template below - but with your own values.
+2. Create a file named `.digitalocean.env` in your home directory, use the template below _but with your own values._
 
-    **MacOS**: `/Users/<username>/.digitalocean.env`  
-    **Linux**: `/home/<username/.digitalocean.env`  
-    **Windows**: `<DRIVE>:/Users/<username>/.digitalocean.env`  
+   **MacOS**: `/Users/<username>/.digitalocean.env`  
+   **Linux**: `/home/<username/.digitalocean.env`  
+   **Windows**: `<DRIVE>:/Users/<username>/.digitalocean.env`
 
-3. Run `digitalocean-ddns --dns-records` to get ids of your domain records, see the example response.
-    **Copy the id** of the record you want to command, usually the A record, and paste it into the `.digitalocean.env` file as in the example.
+3. Run `digitalocean-ddns --dns-records` to get ids of your domain records, see the example response. Copy the `id` of the record you want to be dynamic, usually the A record, and paste it into the `.digitalocean.env` file, example file below.
 
-The configuration is done!
+The configuration is done! Update the DNS record with `digitalocean-ddns --setDnsRecord`
 
-Run with `digitalocean-ddns --update`
+It's up to you how you want to schedule it. On a Linux-ish OS I would advise you using [crontab](https://crontab.guru/) as it's the de facto standard. The link goes to to a crontab generator for the _cron expresson_ needed.
 
-Now it's up to you how you want to schedule it, under Linux or MacOS I strongly recommend you using [crontab](https://crontab.guru/). It's already installed and fairly easy to use, the link includes a generator for the *cron expresson* needed. I included a complete out-of-the-box working example to get started under examples below.
+#### Templates and examples
 
-### Templates and examples
+##### .digitalocean.env example
 
-#### .digitalocean.env
-
-```.digitalocean.env
+```
 TOKEN=1ed524e51e5d32d51a5a5a325a5616a46a135a1eded6e87de8d76e9d87d98cee
 DOMAIN=hello.world
 ID=123456
 ```
 
-#### Example response
+##### Example response
 
 ```
 [ { id: 12345678, type: 'NS', name: '@' },
@@ -46,44 +42,51 @@ ID=123456
   { id: 72345678, type: 'MX', name: '@' },
   { id: 82345678, type: 'MX', name: '@' },
   { id: 92345678, type: 'A', name: '@' } ]
-
 ```
 
-#### Crontab example (Unix-based systems)
+##### Crontab example (Unix-based systems)
 
 ```bash
 # Run digitalocean-ddns from my home directory 04:00 every night
-0 4 * * * cd /home/myuser && digitalocean-ddns --update
+0 4 * * * cd /home/myuser && digitalocean-ddns --setDnsRecord
 ```
 
-## Version history
+### Version history
 
-**0.5.1** - Edited readme and better argument checking  
-Better examples for env-file and check for correct arguments, not just any argument.
+**0.5.2** - Deprecated packages, upped versions, code cleanup, etc.
 
----
-
-**0.5.0** - Refined readme.  
-Includes instructions.  
-Version history was incorrect.
+- Changed from `request` package to [npmjs.com/package/got](https://www.npmjs.com/package/got)
+- Code cleanup/rewrite
 
 ---
 
-**0.4.1** - First release that works correct.  
-Only requests Digitalocean if your IP has changed (except for first run which caches the result).
-Environment file for dynamic usage.
-Helper script to get the domain id you need.
+**0.5.1** - Edited readme and better argument checking
 
-*I Would not advise anyone to go below this version.*
+- Better examples for env-file and check for correct arguments, not just any argument.
+
+---
+
+**0.5.0** - Refined readme
+
+- Includes instructions. Version history was incorrect.
+
+---
+
+**0.4.1** - First release that works correct
+
+- Only requests Digitalocean if your IP has changed (except for first run which caches the result).
+- Environment file for dynamic usage. Helper script to get the domain id you need.
+
+_I Would not advise anyone to go below this version._
 
 ## About
 
-The tool origins from a Node.js script I used to update my records, and didn't differ much from this except that it's driven more dynamically by a environment file now.
+The tool origins from a Node.js script I used to setDnsRecord my records, and didn't differ much from this except that it's driven more dynamically by a environment file now.
 
 **MIT** licensed, use with care and I'll not take care of any form of misbehavior, data loss etc. It works for me.
 
 ## Author
 
 Patrik Hoggren  
-*Software Developer*  
-<p@hoggren.nu>  
+_Software Developer_  
+<p@hoggren.nu>

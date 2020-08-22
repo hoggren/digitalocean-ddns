@@ -118,3 +118,4 @@ dist
 # project files
 .idea/
 .vscode/
+.DS_Store

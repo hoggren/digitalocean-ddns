@@ -1,1 +1,3 @@
-{"baseUrl":"https://api.digitalocean.com/v2","lastIp":"0.0.0.0"}
+{
+  "lastIp": "0.0.0.0"
+}

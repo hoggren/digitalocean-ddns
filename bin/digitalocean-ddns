@@ -1,26 +1,57 @@
 #!/usr/bin/env node
+const fs = require("fs").promises;
+const path = require("path");
+const dnsRequests = require("../src/dns-requests");
+
 const [, , ...args] = process.argv;
+const allowedArgs = ["--dns-records", "--update"];
 
-const allowedArgs = ['--dns-records', '--update'];
-
-if (args == null || !args.some(arg => allowedArgs.includes(arg))) {
+if (args == null || !args.some((arg) => allowedArgs.includes(arg))) {
     console.log(`Incorrect argument specified, quitting.
 
-* --dns-records : get dns-records
-* --update      : update choosen record
+    --dns-records : get dns-records
+    --update      : update choosen record
 
 See README.md or https://www.npmjs.com/package/digitalocean-ddns for usage.
 `);
 }
 
-switch (args[0]) {
-    case '--dns-records':
-        const helper = require('../lib/helper.js');
-        helper.getRecords();
-        return;
+(async () => {
+    const settingsPath = path.join(__dirname, "settings.json");
+    let settings;
 
-    case '--update':
-        const updater = require('../lib/digitalocean-ddns.js');
-        updater.update();
-        break;
-}
+    try {
+        settings = JSON.parse(await fs.readFile(settingsPath, "utf-8"));
+    } catch (err) {
+        console.log("[ERROR] Could not read settings.json");
+        process.exit(-0xcc);
+    }
+
+    switch (args[0]) {
+        case "--dns-records":
+            const response = await dnsRequests.getDnsRecords();
+
+            console.log(
+                response["domain_records"].map((x) => ({
+                    id: x.id,
+                    type: x.type,
+                    name: x.data,
+                }))
+            );
+            break;
+
+        case "--update":
+            settings = await dnsRequests.setDnsRecord(settings);
+
+            try {
+                await fs.writeFile(settingsPath, JSON.stringify(settings), "utf-8");
+                console.log(
+                    `[INFO] Updated DNS record for "${process.env.DO_DOMAIN}" to IP "${settings.lastIp}"`
+                );
+            } catch (err) {
+                console.log("[ERROR] Could not save settings.json");
+                process.exit(-0xdd);
+            }
+            break;
+    }
+})();
